@@ -147,12 +147,16 @@ class NukeSubmitDeadline(pyblish.api.InstancePlugin,
                 script_path = baking_script["bakeScriptPath"]
                 exe_node_name = baking_script["bakeWriteNodeName"]
 
+                submit_frame_start_ = submit_frame_start
+                if baking_script.get("bakeSlate"):
+                    submit_frame_start_ -= 1
+
                 b_job_response = self.payload_submit(
                     instance,
                     script_path,
                     render_path,
                     exe_node_name,
-                    submit_frame_start,
+                    submit_frame_start_,
                     submit_frame_end,
                     r_job_response_json,
                     baking_submission=True
