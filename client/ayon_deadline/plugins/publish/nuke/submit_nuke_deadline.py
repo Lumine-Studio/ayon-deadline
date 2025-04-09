@@ -142,6 +142,10 @@ class NukeSubmitDeadline(
 
         start_frame = int(instance.data["frameStartHandle"])
         end_frame = int(instance.data["frameEndHandle"])
+
+        if instance.data.get("bakeSlate"):
+            start_frame -= 1
+
         # already collected explicit values for rendered Frames
         if not job_info.Frames:
             job_info.Frames = "{start}-{end}".format(
